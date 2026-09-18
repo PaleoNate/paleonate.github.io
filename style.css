@@ -1,0 +1,287 @@
+/* Jud Lab — Plant Biology Lab at William Jewell */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f6f4ef;
+  --text: #24211d;
+  --text-soft: #5d574f;
+  --accent: #3f6b4a;
+  --accent-soft: #e6ece5;
+  --line: #e0dbd2;
+  --max: 980px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171915;
+    --bg-soft: #1f231d;
+    --text: #e9e6df;
+    --text-soft: #a7a196;
+    --accent: #8fbf9b;
+    --accent-soft: #23301f;
+    --line: #333a30;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171915;
+  --bg-soft: #1f231d;
+  --text: #e9e6df;
+  --text-soft: #a7a196;
+  --accent: #8fbf9b;
+  --accent-soft: #23301f;
+  --line: #333a30;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ---------- Header / nav ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+}
+
+.brand {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand span { color: var(--text-soft); font-weight: 400; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-left: auto;
+  font-size: 15px;
+}
+nav a {
+  color: var(--text-soft);
+  text-decoration: none;
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+}
+nav a:hover { color: var(--accent); }
+nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+
+/* ---------- Layout ---------- */
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 40px 16px 64px;
+}
+
+.page-title { font-size: 34px; margin: 0 0 6px; }
+.page-intro { color: var(--text-soft); margin: 0 0 40px; max-width: 65ch; }
+
+section { margin-bottom: 44px; }
+section h2 {
+  font-size: 24px;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+section h3 { font-size: 19px; margin: 26px 0 6px; }
+
+p { max-width: 68ch; }
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px 16px;
+}
+.hero h1 { font-size: 40px; margin: 0 0 8px; }
+.hero .sub { font-size: 19px; color: var(--text-soft); margin: 0; }
+.hero-img { margin-top: 28px; border-radius: 6px; overflow: hidden; }
+
+/* ---------- Cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  background: var(--bg-soft);
+}
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0; font-size: 15px; color: var(--text-soft); }
+.card a { text-decoration: none; }
+
+/* ---------- People ---------- */
+
+.person-lead {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.person-lead img { border-radius: 6px; }
+@media (max-width: 640px) {
+  .person-lead { grid-template-columns: 1fr; }
+  .person-lead img { max-width: 220px; }
+}
+
+ul.people { list-style: none; padding: 0; margin: 0; }
+ul.people li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  max-width: 68ch;
+}
+ul.people li:last-child { border-bottom: none; }
+ul.people strong { font-weight: 600; }
+ul.people span { color: var(--text-soft); }
+
+/* ---------- Publications ---------- */
+
+.pubs h2 {
+  font-size: 20px;
+  margin-top: 34px;
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--line);
+}
+.pub {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 76ch;
+}
+.pub .me { font-weight: 700; }
+.pub .extra { font-size: 14px; color: var(--text-soft); }
+.pub .extra a { color: var(--text-soft); }
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.gallery figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.gallery figcaption {
+  padding: 8px 12px 12px;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+.gallery figcaption em { color: var(--text); font-style: italic; }
+
+/* ---------- Blog ---------- */
+
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  max-width: 70ch;
+}
+.post-list h3 { margin: 0 0 2px; font-size: 19px; }
+.post-list .date { font-size: 14px; color: var(--text-soft); }
+.post-list p { margin: 6px 0 0; font-size: 16px; }
+
+/* ---------- Notes / placeholders ---------- */
+
+.note {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-size: 15px;
+  margin: 0 0 32px;
+  max-width: 68ch;
+}
+.note strong { color: var(--text); }
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-soft);
+  border: 1px dashed var(--line);
+  color: var(--text-soft);
+  font-size: 13px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  align-items: center;
+  font-size: 15px;
+  color: var(--text-soft);
+}
+.footer-inner a { color: var(--text-soft); }
+.footer-links { margin-left: auto; display: flex; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 30px; }
+  .page-title { font-size: 27px; }
+  nav { margin-left: 0; font-size: 14px; }
+}
