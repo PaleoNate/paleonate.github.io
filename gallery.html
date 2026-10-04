@@ -39,31 +39,31 @@
     </figure>
     <figure>
       <img src="images/gallery/neuralethopteris.jpg" alt="Frond of Neuralethopteris lindahlii from the Winterset Formation, Missouri (Wilson et al. 2025)" loading="lazy">
-      <figcaption>Frond of <em>Neuralethopteris lindahlii</em> (Medullosales) from the Winterset Formation, Missouri (Wilson et al. 2025)</figcaption>
+      <figcaption>Frond of <em>Neuralethopteris lindahlii</em> from the Winterset Formation, Missouri (Wilson et al. 2025)</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/notiantha.jpg" alt="Notiantha grandensis Jud et al. 2017" loading="lazy">
-      <figcaption><em>Notiantha grandensis</em> Jud et al. 2017 (Rhamnaceae) from the Paleocene Salamanca Formation, Patagonia</figcaption>
+      <figcaption><em>Notiantha grandensis</em> Jud et al. 2017</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/stephania.jpg" alt="Stephania psittaca (Menispermaceae) fruit from the early Paleocene of Patagonia" loading="lazy">
-      <figcaption><em>Stephania psittaca</em> (Menispermaceae) fruit endocarp from the Paleocene Salamanca Formation, Patagonia/figcaption>
+      <figcaption><em>Stephania psittaca</em> (Menispermaceae) fruit from the early Paleocene of Patagonia</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/rourea.jpg" alt="Rourea blatta Jud and Nelson 2017" loading="lazy">
-      <figcaption><em>Rourea blatta</em> Jud and Nelson 2017 (Connaraceae) liana stem from the Miocene Cucaracha Formation, Panama</figcaption>
+      <figcaption><em>Rourea blatta</em> Jud and Nelson 2017</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/todea.jpg" alt="Transverse section of Todea tidwellii showing the dark sclerenchymatous pith (Jud et al. 2008)" loading="lazy">
-      <figcaption>Transverse section of <em>Todea tidwellii</em> (Osmundaceaeae) from the Lower Cretaceous of Vancouver Island, showing the dark sclerenchymatous pith (Jud et al. 2008)</figcaption>
+      <figcaption>Transverse section of <em>Todea tidwellii</em> showing the dark sclerenchymatous pith (Jud et al. 2008)</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/parinari.jpg" alt="Transverse section of a Parinari endocarp from the lower Miocene of Panama. Scale bar = 1 cm (Jud et al. 2016)" loading="lazy">
-      <figcaption>Transverse section of a <em>Parinari</em> (Chrysobalanaceae) fruit endocarp from the Miocene Cucaracha Formation, Panama. Scale bar = 1 cm (Jud et al. 2016)</figcaption>
+      <figcaption>Transverse section of a <em>Parinari</em> endocarp from the lower Miocene of Panama. Scale bar = 1 cm (Jud et al. 2016)</figcaption>
     </figure>
     <figure>
       <img src="images/gallery/ficus.jpg" alt="Fossil Ficus wood from the Cenozoic of Panama (Jud and Dunham)" loading="lazy">
-      <figcaption>Fossil <em>Ficus</em> (Moraceae) wood from the Cenozoic of Azuero Peninsula, Panama (Jud and Dunham)</figcaption>
+      <figcaption>Fossil <em>Ficus</em> wood from the Cenozoic of Panama (Jud and Dunham)</figcaption>
     </figure>
   </div>
 </section>
@@ -81,6 +81,83 @@
     </div>
   </div>
 </footer>
+
+<div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+  <button class="lb-close" aria-label="Close">&#10005;</button>
+  <button class="lb-prev" aria-label="Previous photograph">&#8249;</button>
+  <button class="lb-next" aria-label="Next photograph">&#8250;</button>
+  <img alt="">
+  <figcaption></figcaption>
+  <div class="counter"></div>
+</div>
+
+<script>
+(function () {
+  var figs = [].slice.call(document.querySelectorAll('.gallery figure'));
+  if (!figs.length) return;
+
+  var box = document.querySelector('.lightbox');
+  var img = box.querySelector('img');
+  var cap = box.querySelector('figcaption');
+  var num = box.querySelector('.counter');
+  var i = 0, lastFocus = null;
+
+  function show(n) {
+    i = (n + figs.length) % figs.length;
+    var f = figs[i];
+    var source = f.querySelector('img');
+    var caption = f.querySelector('figcaption');
+    img.src = source.getAttribute('src');
+    img.alt = source.getAttribute('alt') || '';
+    cap.innerHTML = caption ? caption.innerHTML : '';
+    num.textContent = (i + 1) + ' of ' + figs.length;
+  }
+
+  function openAt(n) {
+    lastFocus = document.activeElement;
+    show(n);
+    box.setAttribute('open-state', 'on');
+    box.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('.lb-close').focus();
+  }
+
+  function close() {
+    box.removeAttribute('open-state');
+    box.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    img.removeAttribute('src');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  figs.forEach(function (f, n) {
+    var t = f.querySelector('img');
+    t.setAttribute('tabindex', '0');
+    t.setAttribute('role', 'button');
+    t.addEventListener('click', function () { openAt(n); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAt(n); }
+    });
+  });
+
+  box.querySelector('.lb-close').addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function (e) {
+    e.stopPropagation(); show(i - 1);
+  });
+  box.querySelector('.lb-next').addEventListener('click', function (e) {
+    e.stopPropagation(); show(i + 1);
+  });
+  box.addEventListener('click', function (e) {
+    if (e.target === box || e.target === img) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (box.getAttribute('open-state') !== 'on') return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+  });
+})();
+</script>
 
 </body>
 </html>
