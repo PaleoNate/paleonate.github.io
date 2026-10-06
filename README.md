@@ -161,3 +161,4 @@ pdfs/               Publication PDFs (empty until you add yours)
 tools/resize_images.py   Shrinks photos for the web
 tools/build.py      Regenerates the pages' shared nav/footer (optional)
 ```
+
