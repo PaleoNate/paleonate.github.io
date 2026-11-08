@@ -1,0 +1,136 @@
+/* Blog index cards and individual post pages.
+   Loaded after style.css on blog.html and every blog-*.html page. */
+
+/* ---------- Index: grid of post cards ---------- */
+.post-grid {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.post-card a:hover h3,
+.post-card a:focus-visible h3 {
+  text-decoration: underline;
+}
+
+.post-card a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: -3px;
+}
+
+.post-card .thumb {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  background: rgba(128, 128, 128, 0.15);
+}
+
+/* Shown when a post has no photo yet */
+.post-card .thumb-empty {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(128, 128, 128, 0.12);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.post-card .card-text {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.post-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.post-card .date {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+/* Cards for posts whose full text isn't added yet */
+.post-card.no-link .card-text p {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Individual post pages ---------- */
+.post {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.post .back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.post h1 {
+  margin-bottom: 0.25rem;
+}
+
+.post .date {
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.post p {
+  line-height: 1.65;
+}
+
+.post h2 {
+  margin-top: 2.25rem;
+  font-size: 1.3rem;
+}
+
+.post figure {
+  margin: 2rem 0;
+}
+
+.post figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.post figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.post .reference {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+  font-size: 0.95rem;
+}
+
+.post .post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.3);
+}
