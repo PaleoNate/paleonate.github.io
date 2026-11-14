@@ -311,14 +311,10 @@ main.post { max-width: none; padding: 0; color: var(--p-ink); font: 18px/1.65 "S
     <li>Report the probability and its interval, not only the class. A specimen whose interval spans the threshold is genuinely uncertain.</li>
     <li>Measurements outside the training range are extrapolations, and the calculator flags them.</li>
     <li>The model was trained on extant dicots with stem diameters under 50&nbsp;cm. It does not apply to monocots, gymnosperms or other woody groups.</li>
-  </ul>
-
-  <h2>About the confidence</h2>
-   <ul>
-    <p>The calculator uses a thinned sample of the model's combined posterior: 4,700 draws, 50 from each of the 94 retained bootstrap replicates. 
+    <li>The calculator uses a thinned sample of the model's combined posterior: 4,700 draws, 50 from each of the 94 retained bootstrap replicates. 
        The intervals therefore carry both uncertainty in the model's parameters and uncertainty from which specimen represented each species in the training data. 
-       Medians agree with the paper's to within Monte Carlo error (about &plusmn;0.01).</p>
-   </ul>
+       Medians agree with the paper's to within Monte Carlo error (about &plusmn;0.01).</li>  
+  </ul>
 </div>
 </main>
 
