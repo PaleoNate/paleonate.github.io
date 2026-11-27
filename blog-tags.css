@@ -1,0 +1,50 @@
+/* ---- Topic tags & filter (append to blog.css) ---- */
+
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.tag-filter button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #c9c2b4;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tag-filter button:hover {
+  border-color: #6b7f4f;
+}
+
+.tag-filter button[aria-pressed="true"] {
+  background: #6b7f4f;
+  border-color: #6b7f4f;
+  color: #fff;
+}
+
+.post-card .tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.post-card .tags li {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #eef0e8;
+  color: #4d5c38;
+}
+
+.post-card[hidden] {
+  display: none;
+}
